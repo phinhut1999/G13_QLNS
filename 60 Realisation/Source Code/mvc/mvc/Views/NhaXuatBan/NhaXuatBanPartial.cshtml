@@ -1,0 +1,19 @@
+﻿@using mvc.Models;
+@model List<NhaXuatBan>
+<h1 style="color:green;background:#ccc; padding:15px 0;text-align:center;font-weight:bold;transform:rotate(3deg)" >Nhà Xuất Bản</h1>
+@{
+    foreach (var item in Model)
+    {
+        <a href="@Url.Action("SachTheoNhaXuatBan","NhaXuatBan",new {@Ma=item.MaNXB })" style="font-weight:bold; margin:10px 0;padding:5px;margin-left:20px;font-style:oblique;">@item.TenNXB</a><br />
+    }
+    <a href="@Url.Action("DanhMucNhaXuatBan","NhaXuatBan")" class="button button-submit" style="transform:rotate(-5deg)">Nhà Xuất Bản Khác </a>
+}
+
+<style>
+    a:hover{
+        background:#808080;
+        transition:all 90ms linear;
+        color:gold;
+    }
+
+</style>

@@ -1,0 +1,14 @@
+﻿@using mvc.Models;
+@model List<ChuDe>
+@{
+    ViewBag.Title = "DanhMucChuDe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh Mục Chủ Đề</h2>
+
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("SachTheoChuDe","Sach", new { @Ma=item.MaChuDe})" class="button button-delete">@item.TenChuDe</a>
+}
+

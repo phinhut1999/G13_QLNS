@@ -1,0 +1,53 @@
+﻿@using mvc.Models;
+@using PagedList.Mvc; 
+@model PagedList.PagedList<Sach>
+
+@{
+    ViewBag.Title = "Index";
+}
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        i++;
+        <div class="sanpham" style="float:left;text-align:center; margin:0 4%" >
+            <a href="@Url.Action("XemChiTiet","Sach",new { @Ma=item.MaSach})"><img src="~/HinhAnhSP/@item.AnhBia" alt="Image" style="width:150px;height:150px;" /></a><br />
+            @if (item.TenSach.Length < 20)
+            {
+                <div class="tenSach" style="float:left;color:#000;font-weight:bold "><strong>Tên Sách:</strong> @item.TenSach</div><br />
+            }
+            else
+            {
+                <div class="tenSach" style="float:left;color:#000;font-weight:bold"><strong>Tên Sách:</strong>@item.TenSach.Substring(0, 20) ... </div><br />
+            }
+            <div class="gia" style="float:left;color:red;font-size:20px;font-weight:bold"><strong>Gía:</strong>@string.Format("{0:0,0}",item.GiaBan) <strong>vnd</strong></div><br />
+            @using (Html.BeginForm("ThemGioHang", "GioHang", new { @Ma = item.MaSach, @strURL = Request.Url.ToString() }))
+            {
+                  <button type="submit" class="button button-delete" style="margin-top:1%">Mua Hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            }
+        </div>
+        if (i % 3 == 0)
+        {
+            <hr />
+        }
+
+    }
+
+<div style="clear:both"></div>
+
+@* tao link cac trang *@
+
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+@Html.PagedListPager(Model,page=>Url.Action("index","Home",new {page = page }))
+<!--
+Sách quốc văn với nhiều thể loại đa dạng như sách giáo khoa – tham khảo, giáo trình, sách học ngữ, từ điển, sách tham khảo thuộc nhiều chuyên ngành phong phú: văn học, tâm lý – giáo dục, khoa học kỹ thuật, khoa học kinh tế - xã hội, khoa học thường thức, sách phong thủy, nghệ thuật sống, danh ngôn, sách thiếu nhi, truyện tranh, truyện đọc, từ điển, công nghệ thông tin, khoa học – kỹ thuật, nấu ăn, làm đẹp...  của nhiều Nhà xuất bản, nhà cung cấp sách có uy tín như: NXB Trẻ, Giáo Dục, Kim Đồng, Văn hóa -Văn Nghệ, Tổng hợp TP.HCM, Chính Trị Quốc Gia; Công ty Đông A, Nhã Nam, Bách Việt, Alphabook, Thái Hà, Minh Lâm, Đinh Tị, Minh Long, TGM, Sáng Tạo Trí Việt, Khang Việt, Toàn Phúc…
+
+Sách ngoại văn bao gồm: từ điển, giáo trình, tham khảo, truyện tranh thiếu nhi , sách học ngữ, từ vựng, ngữ pháp, luyện thi TOEFL, TOEIC, IELS…được nhập từ các NXB nước ngoài như: Cambridge, Mc Graw-Hill, Pearson Education, Oxford, Macmillan, Cengage Learning…
+
+Văn phòng phẩm, dụng cụ học tập, đồ chơi dành cho trẻ em, hàng lưu niệm… đa dạng, phong phú, mẫu mã đẹp, chất lượng tốt, được cung ứng bởi các công ty, nhà cung cấp uy tín như: Thiên Long, XNK Bình Tây, Hạnh Thuận, Ngô Quang, Việt Văn, Trương Vui, Hương Mi, Phương Nga, Việt Tinh Anh, Chăm sóc trẻ em Việt, Mẹ và em bé…
+
+Cùng với việc phát hành độc quyền nhiều ấn bản các loại của các Nhà xuất bản là năng lực in ấn, sản xuất cung ứng nguồn hàng của Xí nghiệp in FAHASA, đã giúp Công ty luôn chủ động được nguồn hàng, nhất là các mặt hàng độc quyền như: lịch bloc, tập học sinh, sổ tay cao cấp, agenda, văn phòng phẩm, dụng cụ học tập…
+-->
+@section NoiDungBenPhai{
+    Là đơn vị có gần 40 năm kinh doanh và phục vụ xã hội, nên FAHASA đã tích lũy được nhiều kinh nghiệm trong việc nghiên cứu thị trường, phân tích tài chính, định hướng phát triển, hoạch định chiến lược kinh doanh và khả năng tiếp thị giỏi… Đồng thời FAHASA còn có nhiều kinh nghiệm trong việc tổ chức các cuộc Hội thảo, Triển lãm và giới thiệu sách quốc văn, ngoại văn với qui mô lớn, ấn tượng.
+    FAHASA luôn là đơn vị đi tiên phong trong nhiều hoạt động xã hội, điển hình là việc tham gia tổ chức các Hội sách ở TP.HCM như: Hội sách Thành Phố Hồ Chí Minh, Hội sách Thiếu nhi ngoại thành, Hội sách Mùa khai trường, Hội sách Học đường, Hội sách Trường Quốc tế… Nổi bật nhất là Hội sách Thành Phố Hồ Chí Minh, được định kỳ tổ chức 2 năm một lần. Đây là Hội sách có qui mô lớn, tầm ảnh hưởng rộng, đã để lại ý nghĩa kinh tế, văn hóa và xã hội sâu sắc. Hội sách không chỉ là nơi hội tụ văn hóa lý tưởng đối với người dân TP.HCM mà còn là một thông điệp văn hóa tôn vinh cho các hoạt động Xuất bản – Phát hành sách cả nước, nâng tầm cho việc giao lưu, trao đổi văn hóa với bạn bè thế giới, đồng thời góp phần đem sách - tri thức đến gần hơn với mọi tầng lớp nhân dân, phục vụ tốt hơn nhu cầu văn hóa tinh thần của xã hội.    
+}

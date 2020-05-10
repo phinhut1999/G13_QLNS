@@ -1,0 +1,23 @@
+﻿@using mvc.Models;
+@model Sach
+
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div >
+    <div><img src="~/HinhAnhSP/@Model.AnhBia" style="width:200px;height:200px;float:left;margin-right:30px;"/></div>
+    <strong style="color:red;font-weight:bold">Mã Sách:</strong><span style="font-weight:bold"> @Model.MaSach</span><br />
+    <strong style="color:red;font-weight:bold">Tên Sách:</strong><span style="font-weight:bold">@Model.TenSach</span><br />
+    <strong style="color:red;font-weight:bold">Chủ Đề:</strong><span style="font-weight:bold">@Model.ChuDe.TenChuDe</span><br />
+    <strong style="color:red;font-weight:bold">Nhà Xuất Bản:</strong><span style="font-weight:bold">@Model.NhaXuatBan.TenNXB</span><br />
+    <strong style="color:red;font-weight:bold">Thông Tin:</strong><span style="font-weight:bold">@Model.MoTa</span><br />
+    <strong style="color:red;font-weight:bold">Giá Bán:</strong><span style="font-weight:bold">@string.Format("{0:0,0 }", Model.GiaBan) vnd</span><br />
+    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @Ma = Model.MaSach, @strURL = Request.Url.ToString() }))
+    {
+         <button type="submit" class="button button-delete" style="margin-top:1%">Mua Hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+    }
+</div>
+<div style="clear:both"></div>
+

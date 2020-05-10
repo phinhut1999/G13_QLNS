@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/screen.css" rel="stylesheet" />
+    <link href="~/Content/fonts.css" rel="stylesheet" />
+    <link href="~/Content/css.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/nivo-slider.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.nivo.slider.js"></script>
+</head>
+<body>
+   
+    <section class="blank">
+        <div class="flash">
+            <div class="phone">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 01693779225
+            </div>
+            
+            <div class="dangki_dangnhap">
+                @Html.Action("GioHangPartial","GioHang")
+                <i class="fa fa-sign-out" aria-hidden="true"></i>@Html.ActionLink("Đăng Kí", "DangKi", "NguoiDung",null, htmlAttributes: new { @class = "DangKi" })
+                <i class="fa fa-unlock" aria-hidden="true"></i>@Html.ActionLink("Đăng Nhập", "DangNhap","NguoiDung", null, htmlAttributes: new { @class = "DangNhap" })
+            </div>
+        </div>
+        <div class="flash success">
+            <div class="timkiem">
+                @using (Html.BeginForm("KetQuaTimKiem","TimKiem",FormMethod.Post))
+                {
+                    @Html.TextBox("txtTimKiem","",htmlAttributes:new {@class="TextBoxTimKiem",@placeholder="Nhập Vào Từ Tìm Kiếm " })
+                    <button class="btntimkiem"type="submit"></button>
+                }
+            </div>
+            <div class="menu-top">
+                <ul>
+                    <li><a href="@Url.Action("index","Home")"> Trang Chủ</a></li>
+                    <li><a href="@Url.Action("GioiThieu","About")"> Giới Thiệu</a></li>
+                    <li><a href="@Url.Action("LienHe","Contact")"> Liên Hệ</a></li>
+                    <li><a href="@Url.Action("HuongDan","Instruct")"> Hướng Dẫn</a></li>
+                    <li><a href="@Url.Action("SachMoiPartial","Sach")"> Sách</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        @Html.Action("SachMoiPartial", "Sach")
+        
+        <div class="right-slider">
+            <div id="slider" class="nivoSlider">
+                <img src="../hinhanh/1.jpg" data-thumb="images/toystory.jpg" alt="" />
+                <img src="../hinhanh/2.jpg" data-thumb="images/up.jpg" alt="" title="This is an example of a caption" />
+                <img src="../hinhanh/3.jpg" data-thumb="images/walle.jpg" alt="" data-transition="slideInLeft" />
+                <img src="../hinhanh/4.jpg" data-thumb="images/nemo.jpg" alt="" title="#htmlcaption" />
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="noidung">
+            @RenderBody()
+        </div>
+    </section>
+    <section>
+        <div>
+            <!--chhủ đề....-->
+            @Html.Action("ChuDePartial", "ChuDe")
+        </div>
+        
+    </section>
+    <section class="blank items">
+        <div id="footer_left" style="width:80%;">
+            <div class="item">
+                <div class="item-info">
+                    <!--Nha Xuat Ban-->
+                    @Html.Action("NhaXuatBanPartial", "NhaXuatBan")
+                    
+                </div>
+                <img src="~/hinhanh/nhaxuatban.jpg" alt="Image">
+            </div>
+        </div>
+       
+            <div id="footer_right1" style="border-radius:5px;width:70%;height:100%;float:right;position:absolute;top:0; right:0;background:#fff;">
+                @RenderSection("NoiDungBenPhai",false)
+            </div>
+    </section>
+    
+        
+    <section>
+        <div>
+            <a href="#" class="button button-buy">Ngọc Luật asp.net &copy; 2017</a>
+        </div>
+    </section>
+   </body>
+    <script type="text/javascript">
+        $(window).load(function() {
+            $('#slider').nivoSlider({
+            });
+        });
+    </script>
+
+</html>
